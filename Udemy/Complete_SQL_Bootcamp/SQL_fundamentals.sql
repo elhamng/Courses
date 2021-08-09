@@ -51,5 +51,66 @@ SELECT COUNT(title) FROM film
 WHERE length <= 50;
 
 /* BETWEEN */
+SELECT * FROM payment
+WHERE amount BETWEEN 8 AND 9 ;
 
+SELECT * FROM payment
+WHERE payment_date BETWEEN '2007-02-01' AND '2007-02-15' ;
 
+/* IN */
+
+SELECT * FROM payment
+WHERE amount IN (0.99,1.98,1.99);
+
+SELECT COUNT(*) FROM payment
+WHERE amount NOT IN (0.99,1.98,1.99);
+
+SELECT * FROM customer
+WHERE first_name IN ('Jahn','Jack','Nancy');
+
+/* LIKE ILIKE*/
+SELECT * FROM customer
+WHERE first_name LIKE 'J%'AND last_name LIKE 'S%';
+
+SELECT * FROM customer
+WHERE first_name ILIKE 'j%'AND last_name ILIKE 'S%';
+
+/*CHALLENGES
+1- How many payment trasactions were greater than 5$?
+*/
+
+SELECT COUNT(*) FROM payment
+WHERE amount > 5 ;
+
+/*
+2- How many actors have a first name 
+that starts with the letter p?
+*/
+SELECT COUNT(*) FROM actor
+WHERE first_name LIKE 'P%'; 
+
+/*
+3- How many unique districts are our customers from?
+*/
+SELECT COUNT(DISTINCT(district)) 
+FROM address;
+
+/*make list of unique districts*/
+SELECT DISTINCT(district) 
+FROM address;
+
+/*
+4- How many films have a rating of R and 
+a replacement cost between 5$ and 15$
+*/
+ 
+ SELECT COUNT(*) FROM film
+ WHERE rating = 'R' AND 
+ replacement_cost BETWEEN 5 AND 15;
+ /*
+ 5- How many films have the word Truman somewhere in the title?
+ */
+ SELECT COUNT(*) FROM film
+ WHERE title LIKE '%Truman%';
+ 
+ 
