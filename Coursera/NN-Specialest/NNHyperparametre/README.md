@@ -17,3 +17,14 @@ Whereas if you normalize the features, then your cost function will on average l
 
 One of the problems of training neural network, especially very deep neural networks, is data vanishing and exploding gradients. What that means is that when you're training a very deep network your derivatives or your slopes can sometimes get either very, very big or very, very small, maybe even exponentially small, and this makes training difficult
 
+
+Which notation would you use to denote the 3rd layer’s activations when the input is the 7th example from the 8th minibatch?
+
+a^[3]{8}(7)
+Note: [i]{j}(k) superscript means i-th layer, j-th minibatch, k-th example
+
+One iteration of mini-batch gradient descent (computing on a single mini-batch) is faster than one iteration of batch gradient descent.
+
+he best mini-batch size usually not 1 and not m, but instead something in-between because:
+If the mini-batch size is 1, you lose the benefits of vectorization across examples in the mini-batch.
+If the mini-batch size is m, you end up with batch gradient descent, which has to process the whole training set before making progress.
