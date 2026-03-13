@@ -188,12 +188,19 @@ These key values are sorted, allowing for efficient searching, often using binar
 
 Alongside each key value, there is a pointer (or reference) to the actual data page where the corresponding row can be found.
 These pointers can be:
+
 Row IDs: Directly referencing the location of the data row in a heap structure.
+
 Page Numbers: Indicating the specific data page and the offset within that page where the row is stored.
 Types of Index Pages
+<img width="2124" height="885" alt="image" src="https://github.com/user-attachments/assets/646c7be7-6c77-494b-86b3-73f08fef753d" />
+
+
+
 Clustered Index Page:
 
 In a clustered index, the leaf level of the index contains the actual data rows instead of pointers. However, the intermediate levels still function as index pages with key values and pointers.
+
 Nonclustered Index Page:
 
 In a nonclustered index, the index page contains key values and pointers to the actual data pages. This allows for efficient lookups without altering the physical order of the data.
