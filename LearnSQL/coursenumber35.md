@@ -215,6 +215,9 @@ Determines the physical order of data in the table. There can only be one cluste
 In a clustered index, the leaf level of the index contains the actual data rows instead of pointers. However, the intermediate levels still function as index pages with key values and pointers.
 <img width="1055" height="698" alt="image" src="https://github.com/user-attachments/assets/3fbfe4b5-15c4-49e9-9898-b04073e6d222" />
 
+<img width="587" height="680" alt="image" src="https://github.com/user-attachments/assets/ac3822b1-3886-4d62-a015-303f638f266a" />
+
+
 
 A B-tree is a self-balancing tree data structure that maintains sorted data and allows for efficient insertion, deletion, and search operations. It's commonly used in databases and file systems. Here's a breakdown of the components of a B-tree, including the root node, intermediate nodes, and leaf nodes:
 
