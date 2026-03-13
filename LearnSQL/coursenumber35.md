@@ -82,17 +82,88 @@ To retrieve data, SQL Server must perform a full table scan. This means it will 
 For a small number of records (like 20 customers), the performance impact might be negligible. However, as the table grows, the performance degradation becomes significant.
 Full table scans consume more I/O resources and CPU time, leading to slower query performance.
 
-Data Storage:
+but the database store it a bit differently 
+<img width="885" height="664" alt="image" src="https://github.com/user-attachments/assets/de260f90-9169-447b-a7b1-c807a349e17b" />
+
+
+##### Data Storage:
 
 Data is stored in a data file (e.g., .mdf) on disk, organized into fixed-size blocks called pages.
-Understanding Pages
+
+##### Understanding Pages
+
 Definition: A page is the smallest unit of data storage in SQL Server, with a fixed size of 8 KB. Each page can store various types of data, including:
 
 Data: Actual records from tables.
+
 Metadata: Information about the structure of the database.
+
 Indexes: Structures that improve data retrieval speed (if they exist).
+
 Types of Pages:
 
 Data Pages: Store the actual rows of data from tables.
+
 Index Pages: Store index information that helps speed up data retrieval.
+
+#### SQL Server Reading and Writing
+
+###### Reading Data:
+
+When a query is executed, SQL Server reads the relevant pages from the disk into memory (buffer cache).
+If the table has no indexes, SQL Server will read all data pages to find the requested records.
+
+###### Writing Data:
+
+When new data is inserted, SQL Server appends the new rows to the end of the heap, possibly filling up existing pages or creating new pages as needed.
+
+A data page in SQL Server is structured to efficiently store and manage data. Here's a detailed look at how a data page is organized, including its sections:
+
+#### Structure of a Data Page
+
+A data page in SQL Server has a fixed size of 8 KB (8192 bytes) and is divided into several sections:
+
+#### Page Header (96 bytes)
+
+The page header contains metadata about the page itself. It is fixed in size and occupies the first 96 bytes of the page.
+
+Key Information in the Page Header:
+
+Page ID: Identifies the page within the database.
+
+Page Type: Indicates the type of page (e.g., data page, index page).
+
+Previous Page Pointer: Points to the previous page in the linked list of pages.
+
+Next Page Pointer: Points to the next page in the linked list.
+
+Row Count: The number of rows stored on the page.
+
+Free Space: Indicates how much free space is available on the page for new rows.
+
+Checksum: Used for data integrity verification.
+
+Data Rows
+
+Following the page header, the remaining space on the page is used to store actual data rows.
+
+Each row in the data page consists of:
+
+Row Header: Contains metadata for the row, such as the length of the row and whether it is variable-length.
+
+Data Fields: The actual data values for each column in the row.
+
+The number of rows that can be stored on a data page depends on the size of the rows and the available space after accounting for the page header.
+Free Space
+
+As rows are added or deleted, the free space within the data page may vary.
+SQL Server manages this free space to optimize the insertion of new rows, often by keeping track of free space in the page header.
+
+so the heap structure is a table without a clustered index and rows are stored randomly without any order.
+<img width="1216" height="475" alt="image" src="https://github.com/user-attachments/assets/31f10d6d-0d36-4b8e-b580-0147a0ffe8de" />
+
+
+
+
+
 
